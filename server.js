@@ -34,7 +34,7 @@ app.post('/contact', (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: 'info@cesw.org',
+    to: 'amromekhimer@hotmail.com',
     subject: 'New Contact Form Submission',
     text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nPrimary Interest: ${service}\nServices Needed: ${servicesList}\nMessage: ${message}`
   };
