@@ -16,8 +16,8 @@ app.use(express.static('public'));
 const transporter = nodemailer.createTransporter({
   service: 'gmail',
   auth: {
-    user: 'your-email@gmail.com',
-    pass: 'your-app-password'
+    user: process.env.EMAIL_USER || 'your-email@gmail.com',
+    pass: process.env.EMAIL_PASS || 'your-app-password'
   }
 });
 
