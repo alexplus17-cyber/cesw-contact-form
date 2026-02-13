@@ -25,10 +25,10 @@ const transporter = nodemailer.createTransport({
 app.post('/contact', (req, res) => {
   // Honeypot check
   if (req.body.website) {
-    return res.status(400).send('Spam detected');
+    return res.status(400).json({ success: false, message: 'Spam detected' });
   }
 
-  const { name, email, phone, company, service, message, 'services[]': services } = req.body;
+  const { name, email, phone, company, service, message, services } = req.body;
 
   const servicesList = Array.isArray(services) ? services.join(', ') : services || '';
 
@@ -42,10 +42,10 @@ app.post('/contact', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.status(500).send('Error sending email');
+      res.status(500).json({ success: false, message: 'Error sending email' });
     } else {
       console.log('Email sent: ' + info.response);
-      res.send('Message sent successfully');
+      res.json({ success: true, message: 'Message sent successfully' });
     }
   });
 });
