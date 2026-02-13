@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Email transporter
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER || 'your-email@gmail.com',
